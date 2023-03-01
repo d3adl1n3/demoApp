@@ -1,0 +1,74 @@
+------------------
+psql postgres -U newuser   #login
+\du                        #list of users
+\l                         #list of db
+\c tasks                   #connect to db
+\d                         #view all tables
+\d+ tasklist               #view all cols of table
+TABLE tasklist             #view data in table
+------------------
+
+
+testUser
+helloWorld123
+
+
+JSP files
+
+spring.mvc.view.prefix = /WEB-INF/jsp/
+spring.mvc.view.suffix = .jsp
+
+-----------------
+
+
+ALTER TABLE
+ADD phone VARCHAR(20);
+
+CREATE TABLE public.taskList
+(
+id SERIAL PRIMARY KEY NOT NULL,
+priorityId INT,
+description TEXT,
+date DATE
+);
+CREATE UNIQUE INDEX taskList_id_uindex ON public.taskList (id);
+
+
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users
+(
+id SERIAL PRIMARY KEY NOT NULL,
+name VARCHAR(32),
+surname VARCHAR(32),
+phone VARCHAR(24),
+birth_date DATE,
+about_me TEXT,
+hard_skills TEXT,
+soft_skills TEXT,
+education TEXT
+);
+
+CREATE TABLE users_to_tasks
+(
+id SERIAL PRIMARY KEY NOT NULL,
+userId INT,
+taskId INT,
+FOREIGN KEY (userId) REFERENCES users (id),
+FOREIGN KEY (taskId) REFERENCES tasklist (id)
+);
+
+
+// @Query("select line from users_to_tasks where id )
+
+    // SELECT taskid FROM users_to_tasks WHERE userid = ''
+
+    // @Query("insert into )
+
+    // method for user to find tasks by its id
+    // add relation to created task by id
+    // delete relation when task is finished (by cascade property probably)
+
+    //@Query(task_id = "SELECT taskid FROM users_to_tasks WHERE userid = 1")
+    //Collection<User> findAllActiveUsers();
+    //ManyToOne check

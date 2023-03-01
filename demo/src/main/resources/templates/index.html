@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorator="layout/root_layout"
+      lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Organizer</title>
+    <link rel="stylesheet" type="text/css" href="/css/style.x25685.css"/>
+</head>
+<body>
+
+<h4><a href="/login">Войти</a></h4>
+<h4><a href="/registration">Зарегистрироваться</a></h4>
+
+<h4><a href="/logout">Выйти</a></h4>
+<h4><a href="/projects">Проекты</a></h4>
+
+<h1>Organizer</h1>
+<h3>Add task to list</h3>
+<form action="/add" method="post">
+    <table border="1px">
+        <tr>
+            <td>
+                <label>Priority</label>
+                <input type="number" name="priorityId">
+            </td>
+            <td>
+                <label>Description</label>
+                <input type="text" name="description">
+            </td>
+            <td>
+                <label>Date</label>
+                <input type="date" name="date">
+            </td>
+
+            <td>
+                <input type="submit" value="add task">
+            </td>
+        </tr>
+    </table>
+</form>
+<br>
+<h2>Task list(task count : <span th:text="${taskSize}"> ${taskSize}</span>)</h2>
+<table border="1px">
+    <tr>
+        <td>Id</td>
+        <td>Priority</td>
+        <td>Task description</td>
+        <td>Date</td>
+        <td>Delete from list</td>
+    </tr>
+    <tr th:each="task : ${taskList}">
+        <td><span th:text="${task.id}"></span></td>
+        <td><span th:text="${task.priorityId}"></span></td>
+        <td><span th:text="${task.description}"></span></td>
+        <td><span th:text="${task.date}"></span></td>
+        <td><a th:href="@{/delete/{id}(id=${task.id})}">Delete</a></td>
+    </tr>
+</table>
+</body>
+</html>

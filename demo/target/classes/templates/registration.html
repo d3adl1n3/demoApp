@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      layout:decorator="layout/root_layout"
+      lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Регистрация</title>
+</head>
+
+<body>
+<h2><span th:text="${info}"> ${info}</span></h2>
+<div>
+    <form action="/save" th:action="@{/save}" th:object="${userForm}" method="post">
+        <h2>Регистрация</h2>
+        <div>
+            <input type="text" name="username" placeholder="Username" autofocus="true" th:field="*{username}">
+            <!-- <errors path="username"></errors> -->
+            <!-- ${usernameError} -->
+        </div>
+        <div>
+            <input type="password" name="password" placeholder="Password" th:field="*{password}">
+        </div>
+        <div>
+            <input type="password" name="passwordConfirm" th:field="*{password}" placeholder="Confirm your password">
+            <!-- <errors path="password"></errors> -->
+            <!-- ${passwordError} -->
+        </div>
+        <input type="submit" value="log in" />
+    </form>
+    <a href="/">Главная</a>
+</div>
+</body>
+</html>
